@@ -10,10 +10,14 @@ function LogTime() {
     var year = day.getFullYear();
     var dateStr = month + "/" + date + "/" + year;
 
+    function handleClick() {
+        
+    }
+
     return(
         <div className="left-container">
         <h1>Today's Date: {dateStr}</h1>
-        <Button variant="contained" color="default">Log</Button>
+        <Button variant="contained" color="default" onClick={handleClick}>Log</Button>
         </div>
     )
 }

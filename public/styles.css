@@ -5,7 +5,7 @@ body {
   box-sizing: border-box;
   justify-content: center;
   align-items: center;
-  color: hsl(198, 1%, 29%);
+  color: #808285;
   font-family: "Montserrat", sans-serif;
   text-align: center;
   font-size: 50%;
@@ -92,7 +92,7 @@ td {
 }
 
 
-.circle {
+.circle-logged {
   padding: 0 0;
   background: white;
   width: 14px;
@@ -107,6 +107,25 @@ td {
   font-size: 100%;
   cursor: pointer;
   text-decoration: none;
+  color:#808285;
+}
+
+.circle-unlogged {
+  padding: 0 0;
+  background: transparent;
+  width: 14px;
+  height: 14px;
+  text-align:center;
+  border-radius: 50%;
+  margin:auto auto;
+  vertical-align: middle;
+  position: relative;
+  border: none;
+  font-family: "Montserrat", sans-serif;
+  font-size: 100%;
+  cursor: pointer;
+  text-decoration: none;
+  color: #808285;
 }
 
 p {
@@ -118,3 +137,6 @@ p {
   color: #fafafa8f;
 }
 
+input[type="button"] {
+  outline: none;
+}
