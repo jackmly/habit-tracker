@@ -1,0 +1,21 @@
+import React, { useState } from "react";
+import Button from '@material-ui/core/Button';
+
+
+
+function LogTime() {
+    var day = new Date();
+    var date = day.getDate();
+    var month = day.getMonth()+1;
+    var year = day.getFullYear();
+    var dateStr = month + "/" + date + "/" + year;
+
+    return(
+        <div className="left-container">
+        <h1>Today's Date: {dateStr}</h1>
+        <Button variant="contained" color="default">Log</Button>
+        </div>
+    )
+}
+
+export default LogTime
