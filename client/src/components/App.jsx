@@ -1,18 +1,13 @@
-import React, { useState } from "react";
-import SingleButton from "./SingleButton";
+import React from "react";
+import {BrowserRouter as Router, Route} from "react-router-dom";
 import Table from "./Table";
 import LogTime from "./LogTime";
 
 function App() {
   return (
     <div className="parent">
-    <div className="left-container">
-      <LogTime />
-    </div>
-    <div className="container">
-      {/* <SingleButton /> */}
-      <Table />
-    </div>
+        <LogTime />
+        <Router><Route path="/" exact component = {Table} /></Router>
     </div>
   );
 }

@@ -14,7 +14,7 @@ function Table() {
       const months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
       let tableHeader = [];
       for (let i=0; i<12; i++){
-         tableHeader.push(<td class="tableHeader">{months[i]}</td>)
+         tableHeader.push(<td className="tableHeader">{months[i]}</td>)
       }
       table.push(<tr>{tableHeader}</tr>)
 
@@ -41,9 +41,13 @@ function Table() {
       return table
    }
    return (
+      <div className = "container">
       <table>
+         <tbody>
          {createTable()}
+         </tbody>
       </table>
+      </div>
 
    )
 

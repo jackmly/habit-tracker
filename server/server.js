@@ -1,25 +1,34 @@
 require("dotenv").config();
 const express = require("express");
+const bodyParser = require("body-parser");
+const mongoose = require("mongoose");
+const cors = require("cors");
 
 const app = express();
+const port = process.env.PORT || 5000;
 
-mongoose.connect("mongodb://localhost:27017/userDB", {
+app.use(bodyParser.urlencoded({extended: false}));
+app.use(bodyParser.json());
+app.use(cors());
+
+mongoose.connect("mongodb://localhost:27017/habitDB", {
   useNewUrlParser: true,
-  useUnifiedTopology: true
+  useUnifiedTopology: true,
+  useCreateIndex: true
 });
 
-mongoose.set("useCreateIndex", true);
+const connection = mongoose.connection;
+connection.once("open", () => {
+  console.log("MongoDB database connection established")
+});
 
-const userSchema = new mongoose.Schema({
-    email: String,
-    password: String,
-})
+const usersRouter = require("./routes/users");
+const logsRouter = require("./routes/logs");
+
+app.use("/users", usersRouter);
+app.use("/logs", logsRouter);
 
 
-const User = new mongoose.model("User", userSchema)
-
-app.use(express.json());
-
-app.listen(4000, function() {
-    console.log("Server is running on port 4000")
+app.listen(port, () => {
+    console.log("Server is running on port 5000");
 });
