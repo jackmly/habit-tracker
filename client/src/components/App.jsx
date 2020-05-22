@@ -1,13 +1,14 @@
 import React from "react";
 import {BrowserRouter as Router, Route} from "react-router-dom";
-import Table from "./Table";
+import Tracker from "./Tracker";
 import LogTime from "./LogTime";
 
 function App() {
   return (
     <div className="parent">
-        <LogTime />
-        <Router><Route path="/" exact component = {Table} /></Router>
+        <Router><Route path="/" exact component = {LogTime} /></Router>
+        <Router><Route path="/" exact component = {Tracker} /></Router>
+
     </div>
   );
 }

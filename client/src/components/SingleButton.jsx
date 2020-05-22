@@ -3,19 +3,24 @@ import axios from "axios";
 
 function SingleButton(props) {
 
-  const [isLogged, setIsLogged] = useState(false);
-  const date = props.year + "/" + props.month + "/" + props.date;
+  var isLogged = props.logged;
 
-  const [data, setLog] = useState({log: date,});
+  // const [isLogged, setIsLogged] = useState(false);
+  const datestr = props.year + "/" + props.month + "/" + props.date;
+
+  const [data, setLog] = useState({log: datestr});
 
   function handleClick(event) {
     event.preventDefault();
-    setIsLogged(!isLogged);
+    // setIsLogged(!isLogged);
+    isLogged  = !props.logged;
 
-    axios.post("http://localhost:5000/logs", {log:"fun"}, {headers:{'Content-Type': 'application/json'}})
-      .then(function(response) {
-        console.log(response);
-      });
+    if (isLogged) {
+      axios.post("http://localhost:5000/api/logs/add", data, {headers:{'Content-Type': 'application/json'}})
+        .then(function(response) {
+          console.log(response);
+        });
+    }
 
     setLog({log: ""});
 

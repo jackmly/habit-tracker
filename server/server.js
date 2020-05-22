@@ -25,8 +25,8 @@ connection.once("open", () => {
 const usersRouter = require("./routes/users");
 const logsRouter = require("./routes/logs");
 
-app.use("/users", usersRouter);
-app.use("/logs", logsRouter);
+app.use("/api/users", usersRouter);
+app.use("/api/logs", logsRouter);
 
 
 app.listen(port, () => {

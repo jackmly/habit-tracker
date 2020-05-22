@@ -1,12 +1,25 @@
-import React from "react";
+import React, {useState} from "react";
+import axios from "axios";
 import SingleButton from "./SingleButton";
 
-function Table() {
+function Tracker() {
 
    const date = new Date();
    const year = date.getFullYear();
-
    const leapYear = (year % 100 === 0) ? (year % 400 === 0) : (year % 4 === 0);
+
+
+   const [logData, setLogData] = useState([]);
+  
+   axios.get("http://localhost:5000/api/logs")
+     .then(response => {
+       setLogData(response.data.map(log => log.log));
+     })
+     .catch(error => {
+       console.log(error);
+     });
+
+   
 
    function createTable() {
       let table =[];
@@ -28,13 +41,29 @@ function Table() {
                } else if (!leapYear && i===29) {
                   tableBody.push(<td></td>)
                } else {
-                  tableBody.push(<td><SingleButton date={i} month={j} /></td>)
-               }
+                  tableBody.push(
+                     <td>
+                        <SingleButton 
+                           date={i}
+                           month={j}
+                           year={year}
+                           logged = {logData.includes(year + "/" + j + "/" + i)}
+                        />
+                     </td>
+                  )}
             } else if (shortMonth.includes(j) && i===31) {
                tableBody.push(<td></td>)
             } else {
-               tableBody.push(<td><SingleButton date={i} month={j} year={year} /></td>)
-            }
+               tableBody.push(
+                  <td>
+                     <SingleButton 
+                        date={i}
+                        month={j}
+                        year={year}
+                        logged = {logData.includes(year + "/" + j + "/" + i)}
+                     />
+                  </td>
+               )}
          }
          table.push(<tr>{tableBody}</tr>)
       }
@@ -53,4 +82,4 @@ function Table() {
 
 }
 
-export default Table
+export default Tracker
