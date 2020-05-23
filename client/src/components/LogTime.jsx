@@ -16,7 +16,7 @@ function LogTime() {
 
     return(
         <div className="left-container">
-        <h1>Today's Date: {dateStr}</h1>
+        <h5>Today's Date: {dateStr}</h5>
         <Button variant="contained" color="default" onClick={handleClick}>Log</Button>
         </div>
     )

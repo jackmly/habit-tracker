@@ -12,8 +12,6 @@ router.route("/add").post((req, res) => {
     const habit = req.body.habit;
     const log = req.body.log;
 
-    console.log(req.body);
-
     const newLog = new Log({
         email,
         habit,
@@ -24,5 +22,18 @@ router.route("/add").post((req, res) => {
         .then (() => res.json("Data logged!"))
         .catch(err => res.status(400).json("Error: " + err));
 })
+
+router.route("/delete").delete((req, res) => {
+    const email = req.body.email;
+    const habit = req.body.habit;
+    const log = req.body.log;
+
+    console.log(log);
+
+    Log.deleteOne({log: log})
+        .then(() => res.json("Data deleted!"))
+        .catch(err => res.status(400).json("Error: " + err));
+    });
+
 
 module.exports = router;

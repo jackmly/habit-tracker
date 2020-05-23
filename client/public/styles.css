@@ -1,21 +1,11 @@
 body {
-  background-color: #fafafa;
+  background-color: #E8ECEF;
   min-height: 70vh;
   padding: 1rem;
   box-sizing: border-box;
-  justify-content: center;
-  align-items: center;
+  text-align:left;
   color: #808285;
   font-family: "Montserrat", sans-serif;
-  text-align: center;
-  font-size: 50%;
-}
-
-div.parent {
-  position:relative;
-  text-align: center;
-  align-items: center;
-  justify-content: center;
 }
 
 .left-container {
@@ -23,9 +13,10 @@ div.parent {
   float: left;
   justify-content: left;
   position:absolute;
+  text-align:left;
 }
 
-.container {
+.tracker {
   width: 260px;
   height: 520px;
   min-height: 500px;
@@ -38,6 +29,12 @@ div.parent {
   padding: 1rem;
   box-sizing: border-box;
   display: inline-block;
+  font-family: "Montserrat", sans-serif;
+  font-size: 50%;
+  cursor: pointer;
+  text-decoration: none;
+  color:#808285;
+  justify-content: center;
 }
 .heading {
   display: flex;
@@ -51,27 +48,6 @@ div.parent {
   border-radius: 20% 5% 20% 5%/5% 20% 25% 20%;
   background-color: #fdcb6e;
   font-size: 1.5rem;
-}
-
-.form input {
-  box-sizing: border-box;
-  background-color: transparent;
-  padding: 0.7rem;
-  border-bottom-right-radius: 15px 3px;
-  border-bottom-left-radius: 3px 15px;
-  border: solid 3px transparent;
-  border-bottom: dashed 3px #fdcb6e;
-  font-family: "Montserrat", sans-serif;
-  font-size: 1rem;
-  color: hsla(260, 2%, 25%, 0.7);
-  width: 70%;
-  margin-bottom: 20px;
-}
-
-li {
-  text-align: left;
-  position: relative;
-  padding: 0.5rem;
 }
 
 table {
@@ -103,11 +79,6 @@ td {
   vertical-align: middle;
   position: relative;
   border: none;
-  font-family: "Montserrat", sans-serif;
-  font-size: 100%;
-  cursor: pointer;
-  text-decoration: none;
-  color:#808285;
 }
 
 .circle-unlogged {
@@ -121,11 +92,6 @@ td {
   vertical-align: middle;
   position: relative;
   border: none;
-  font-family: "Montserrat", sans-serif;
-  font-size: 100%;
-  cursor: pointer;
-  text-decoration: none;
-  color: #808285;
 }
 
 p {
@@ -139,4 +105,11 @@ p {
 
 input[type="button"] {
   outline: none;
+  cursor: pointer;
+  text-decoration: none;
+  color:#808285;
+}
+
+.container-home {
+  text-align: center;
 }

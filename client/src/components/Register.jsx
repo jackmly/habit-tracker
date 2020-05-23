@@ -1,0 +1,72 @@
+import React, {useState} from "react";
+import axios from "axios";
+
+function Register() {
+
+  const [user, setUser] = useState({username:"", password:""});
+
+  function handleChange(event){
+    const {name, value} = event.target;
+
+    setUser(prevValue =>{
+      return {
+        ...prevValue,
+        [name]: value
+      }
+    })
+  }
+
+  function handleSubmit(event) {
+    event.preventDefault()
+    
+    console.log(user);
+
+    axios.post("http://localhost:5000/register", user, {headers:{'Content-Type': 'application/json'}})
+      .then(function(response) {
+        console.log(response);
+      });
+  }
+  
+  return (
+<div className="container mt-5">
+  <h1>Register</h1>
+
+  <div className="row">
+    <div className="col-sm-8">
+      <div className="card">
+        <div className="card-body">
+
+              {/* Makes POST request to /register route */}
+              <form action="/register" method="POST"  onSubmit={handleSubmit}>
+            <div className="form-group">
+              <label htmlFor="email">Email</label>
+              <input type="email" className="form-control" name="username" onChange={handleChange} />
+            </div>
+            <div className="form-group">
+              <label htmlFor="password">Password</label>
+              <input type="password" className="form-control" name="password" onChange={handleChange} />
+            </div>
+            <button type="submit" className="btn btn-dark">Register</button>
+          </form>
+
+        </div>
+      </div>
+    </div>
+
+    <div className="col-sm-4">
+      <div className="card social-block">
+        <div className="card-body">
+          <a className="btn btn-block" href="/auth/google" role="button">
+            <i className="fab fa-google"></i>
+            Sign Up with Google
+          </a>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+    )
+}
+
+export default Register

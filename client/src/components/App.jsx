@@ -1,14 +1,15 @@
 import React from "react";
 import {BrowserRouter as Router, Route} from "react-router-dom";
-import Tracker from "./Tracker";
-import LogTime from "./LogTime";
+import Home from "./Home";
+import Register from "./Register";
+import LogIn from "./LogIn";
 
 function App() {
   return (
-    <div className="parent">
-        <Router><Route path="/" exact component = {LogTime} /></Router>
-        <Router><Route path="/" exact component = {Tracker} /></Router>
-
+    <div>
+        <Router><Route path="/" exact component = {Home} /></Router>
+        <Router><Route path="/login" exact component = {LogIn} /></Router>
+        <Router><Route path="/register" exact component = {Register} /></Router>
     </div>
   );
 }

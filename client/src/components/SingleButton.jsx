@@ -20,14 +20,25 @@ function SingleButton(props) {
         .then(function(response) {
           console.log(response);
         });
+        
+    } else {
+      axios.delete("http://localhost:5000/api/logs/delete", {data}, {headers:{'Content-Type': 'application/json'}})
+        .then(function(response) {
+          console.log(response);
+        });
     }
 
-    setLog({log: ""});
+    // setLog({log: ""});
 
   }
 
   return (
-        <input type="button" className={isLogged? "circle-logged": "circle-unlogged"} onClick={handleClick} value={props.date} />
+        <input 
+          type="button"
+          className={isLogged? "circle-logged": "circle-unlogged"} 
+          onClick={handleClick}
+          value={props.date}
+        />
   );
 }
 

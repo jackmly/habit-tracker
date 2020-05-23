@@ -19,8 +19,6 @@ function Tracker() {
        console.log(error);
      });
 
-   
-
    function createTable() {
       let table =[];
       const shortMonth = [2, 4, 6, 9, 11]
@@ -70,7 +68,7 @@ function Tracker() {
       return table
    }
    return (
-      <div className = "container">
+      <div className = "tracker">
       <table>
          <tbody>
          {createTable()}
