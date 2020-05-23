@@ -1,7 +1,7 @@
 import React, {useState} from "react";
 import axios from "axios";
 
-function Register() {
+function Register(props) {
 
   const [user, setUser] = useState({username:"", password:""});
 
@@ -21,10 +21,18 @@ function Register() {
     
     console.log(user);
 
-    axios.post("http://localhost:5000/register", user, {headers:{'Content-Type': 'application/json'}})
-      .then(function(response) {
-        console.log(response);
-      });
+    axios
+        .post("http://localhost:5000/register",
+            user,
+            {headers:{'Content-Type': 'application/json'}},
+            {withCredentials: true}
+        )
+        .then(function(response) {
+            console.log("registration response: ", response);
+        })
+        .catch(function(err){
+            console.log("registration response: ", err);
+        });
   }
   
   return (

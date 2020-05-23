@@ -1,6 +1,6 @@
 import React from "react";
 import Button from '@material-ui/core/Button';
-
+import {logInStatus} from "./LogIn";
 
 
 function LogTime() {
@@ -11,13 +11,14 @@ function LogTime() {
     var dateStr = month + "/" + date + "/" + year;
 
     function handleClick() {
-        
+        return logInStatus;
     }
 
     return(
         <div className="left-container">
-        <h5>Today's Date: {dateStr}</h5>
-        <Button variant="contained" color="default" onClick={handleClick}>Log</Button>
+            {logInStatus}
+            <h5>Today's Date: {dateStr}</h5>
+            <Button variant="contained" color="default" onClick={handleClick}>Log</Button>
         </div>
     )
 }

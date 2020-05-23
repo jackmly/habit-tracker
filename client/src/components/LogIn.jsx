@@ -1,9 +1,13 @@
 import React, {useState} from "react";
+import {Redirect} from "react-router-dom";
 import axios from "axios";
+
+var logInStatus = "Not Logged In";
 
 function LogIn() {
 
   const [user, setUser] = useState({username:"", password:""});
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   function handleChange(event){
     const {name, value} = event.target;
@@ -19,14 +23,30 @@ function LogIn() {
   function handleSubmit(event) {
     event.preventDefault()
 
-    axios.post("http://localhost:5000/login", user, {headers:{'Content-Type': 'application/json'}})
+    axios
+      .post("http://localhost:5000/login", 
+        user, 
+        {headers:{'Content-Type': 'application/json'}},
+        {withCredentials: true}
+      )
       .then(function(response) {
-        console.log(response);
-      });
+        console.log("login response: ", response);
+        setIsLoggedIn(response.data.success);
+        console.log(response.data.success);
+        console.log(isLoggedIn);
+        if (response.data.success) {
+          logInStatus = "Logged In!"
+          console.log(logInStatus);
+        }
+      })
+      .catch(function(err){
+          console.log("login response: ", err);
+      })
   }
   
   return (
     <div className="container mt-5">
+    {isLoggedIn?(<Redirect to="/" />):null}
       <h1>Login</h1>
 
       <div className="row">
@@ -67,4 +87,5 @@ function LogIn() {
     )
 }
 
-export default LogIn
+export default LogIn;
+export {logInStatus};

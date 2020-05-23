@@ -10,12 +10,12 @@ const passportLocalMongoose = require("passport-local-mongoose");
 const app = express();
 const port = process.env.PORT || 5000;
 
-app.use(bodyParser.urlencoded({extended: false}));
+app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json());
 app.use(cors());
 
 app.use(session({
-  secret: "how hard you can get hit",
+  secret: process.env.SECRET,
   resave: false,
   saveUninitialized: false
 }));
@@ -52,29 +52,36 @@ passport.deserializeUser(User.deserializeUser());
 
 app.get("/", function(req, res) {
   if (req.isAuthenticated()){
-    res.status(200).json("Ok");
+    res.status(200).json("Oks");
   } else {
-    res.status(400).json("Not Signed In");
+    res.status(400).json("Not Signed sadfaIn");
   }
 });
 
+app.get("/login", function(req, res) {
+
+});
+
+app.get("/register", function(req, res) {
+
+});
+
+
 app.get("/logout", function(req, res){
   req.logout();
-  res.redirect("/")
+  res.redirect("http://localhost:3000")
 })
 
 app.post("/register", function (req, res) {
   console.log(req.body);
-
   User.register(
     {username: req.body.username}, req.body.password,
     function(err, user) {
       if (err) {
-        console.log(err);
-        res.redirect("/");
+        res.json({success:false, message:"Your account could not be saved. Error: ", err})
       } else {
         passport.authenticate("local") (req, res, function(){
-          res.redirect("/");
+          res.json({success:true, user});
         });
       }
     });
@@ -88,10 +95,10 @@ app.post("/login", function(req, res){
 
   req.login(user, function(err){
     if (err) {
-      console.log(err);
+      res.json({success:false, message:"Your account could not be saved. Error: ", err})
     } else {
       passport.authenticate("local") (req, res, function(){
-        res.redirect("/");
+        res.json({success:true, user});
       });
     }
   });
