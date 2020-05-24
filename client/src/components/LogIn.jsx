@@ -23,7 +23,7 @@ function LogIn(props) {
     event.preventDefault()
 
     axios
-      .post("http://localhost:3001/api/login", 
+      .post("api/login", 
         user, 
         {headers:{'Content-Type': 'application/json', "Access-Control-Allow-Origin": "http://localhost:3000"}},
         // {withCredentials: true}

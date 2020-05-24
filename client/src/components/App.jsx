@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, {useState, useEffect} from "react";
 import {BrowserRouter as Router, Switch, Route} from "react-router-dom";
 import axios from "axios";
 import Home from "./Home";
@@ -11,15 +11,20 @@ function App() {
 
   const [userStatus, setUserStatus] = useState({loggedIn: false, username: null});
 
+  useEffect(() =>{
+    getUser();
+  },[]);
+
   function updateUser(obj){
     setUserStatus(obj);
     console.log("new user status: ", userStatus);
-  }
+  };
 
-    axios("http://localhost:3001/api", {
+  function getUser() {
+    axios("/api", {
       method: "get",
       withCredentials: true,
-      headers:{'Content-Type': 'application/json', "Access-Control-Allow-Origin": "http://localhost:3001/api"}
+      headers:{'Content-Type': 'application/json', "Access-Control-Allow-Origin": "http://localhost:3001"}
     })
     .then(response => {
       console.log("Get user response: ", response.data);
@@ -32,6 +37,7 @@ function App() {
         console.log("Not logged in");
       }
     });
+  }
 
   return (
     <div><h5>Hi {userStatus.username}</h5>
