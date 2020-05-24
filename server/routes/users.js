@@ -3,6 +3,7 @@ let User = require('../models/user.model')
 const passport = require('../passport')
 
 
+
 router.get("/", function(req, res) {
     if (req.user){
       console.log("request from app :", req.user);
@@ -28,10 +29,11 @@ router.get("/logout", function(req, res){
     req.session.destroy(function (err) {
         if (err) {
           return next(err);
+        } else {
+        return res.send({success: true});
         }
-        return res.send({ success: true });
         });
-    res.redirect("/login")
+    // res.send({msg: "logging out"})
   } else {
     res.send({msg: "No user to log out"})
   }

@@ -35,8 +35,7 @@ connection.once("open", () => {
 });
 
 app.use(session({
-  // secret: process.env.SECRET,
-  secret: "abc",
+  secret: process.env.SECRET,
   store: new MongoStore({ mongooseConnection: connection }),
   resave: false,
   saveUninitialized: false
