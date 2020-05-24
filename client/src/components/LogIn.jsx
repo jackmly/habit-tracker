@@ -2,12 +2,11 @@ import React, {useState} from "react";
 import {Redirect} from "react-router-dom";
 import axios from "axios";
 
-var logInStatus = "Not Logged In";
 
-function LogIn() {
+function LogIn(props) {
 
   const [user, setUser] = useState({username:"", password:""});
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [redirectTo, setRedirectTo] = useState(null);
 
   function handleChange(event){
     const {name, value} = event.target;
@@ -24,31 +23,34 @@ function LogIn() {
     event.preventDefault()
 
     axios
-      .post("http://localhost:5000/login", 
+      .post("http://localhost:3001/api/login", 
         user, 
-        {headers:{'Content-Type': 'application/json'}},
-        {withCredentials: true}
+        {headers:{'Content-Type': 'application/json', "Access-Control-Allow-Origin": "http://localhost:3000"}},
+        // {withCredentials: true}
       )
       .then(function(response) {
         console.log("login response: ", response);
-        setIsLoggedIn(response.data.success);
-        console.log(response.data.success);
-        console.log(isLoggedIn);
         if (response.data.success) {
-          logInStatus = "Logged In!"
-          console.log(logInStatus);
-        }
+          console.log("username returned: ", response.data.user.username)
+          props.onUpdate({
+            loggedIn: true,
+            username: response.data.user.username
+          })
+          console.log(props.username)
+          setRedirectTo("/");
+        };
       })
       .catch(function(err){
           console.log("login response: ", err);
       })
   }
-  
+
+  if (redirectTo) {
+    return <Redirect to={{ pathname: redirectTo }} />
+  } else {
   return (
     <div className="container mt-5">
-    {isLoggedIn?(<Redirect to="/" />):null}
       <h1>Login</h1>
-
       <div className="row">
         <div className="col-sm-8">
           <div className="card">
@@ -58,11 +60,11 @@ function LogIn() {
               <form action="/login" onSubmit={handleSubmit}>
                 <div className="form-group">
                   <label htmlFor="email">Email</label>
-                  <input type="email" className="form-control" name="username" onChange={handleChange} />
+                  <input type="email" className="form-control" name="username" onChange={handleChange} value={user.username}/>
                 </div>
                 <div className="form-group">
                   <label htmlFor="password">Password</label>
-                  <input type="password" className="form-control" name="password" onChange={handleChange} />
+                  <input type="password" className="form-control" name="password" onChange={handleChange} value={user.password}/>
                 </div>
                 <button type="submit" className="btn btn-dark">Login</button>
               </form>
@@ -86,6 +88,5 @@ function LogIn() {
     </div>
     )
 }
-
+}
 export default LogIn;
-export {logInStatus};

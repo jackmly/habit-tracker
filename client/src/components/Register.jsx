@@ -22,7 +22,7 @@ function Register(props) {
     console.log(user);
 
     axios
-        .post("http://localhost:5000/register",
+        .post("http://localhost:3001/api/register",
             user,
             {headers:{'Content-Type': 'application/json'}},
             {withCredentials: true}

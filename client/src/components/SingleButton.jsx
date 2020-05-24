@@ -16,13 +16,13 @@ function SingleButton(props) {
     isLogged  = !props.logged;
 
     if (isLogged) {
-      axios.post("http://localhost:5000/api/logs/add", data, {headers:{'Content-Type': 'application/json'}})
+      axios.post("http://localhost:3001/api/logs/add", data, {headers:{'Content-Type': 'application/json'}})
         .then(function(response) {
           console.log(response);
         });
         
     } else {
-      axios.delete("http://localhost:5000/api/logs/delete", {data}, {headers:{'Content-Type': 'application/json'}})
+      axios.delete("http://localhost:3001/api/logs/delete", {data}, {headers:{'Content-Type': 'application/json'}})
         .then(function(response) {
           console.log(response);
         });

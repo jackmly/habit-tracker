@@ -4,9 +4,6 @@ import LogTime from "./LogTime";
 
 function Home(){
 
-    // function handleSuccessfulAuth(data){
-    //     props.history.push("/")
-    // }
     return (
         <div className="container-home">
             <LogTime />

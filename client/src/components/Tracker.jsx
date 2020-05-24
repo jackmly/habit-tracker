@@ -11,7 +11,7 @@ function Tracker() {
 
    const [logData, setLogData] = useState([]);
   
-   axios.get("http://localhost:5000/api/logs")
+   axios.get("http://localhost:3001/api/logs")
      .then(response => {
        setLogData(response.data.map(log => log.log));
      })
