@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, {useState, useEffect} from "react";
 import axios from "axios";
 import SingleButton from "./SingleButton";
 
@@ -10,14 +10,15 @@ function Tracker() {
 
 
    const [logData, setLogData] = useState([]);
-  
-   axios.get("http://localhost:3001/api/logs")
-     .then(response => {
-       setLogData(response.data.map(log => log.log));
-     })
-     .catch(error => {
-       console.log(error);
-     });
+
+      axios.get("/api/logs")
+      .then(response => {
+        setLogData(response.data.map(log => log.log));
+      })
+      .catch(error => {
+        console.log(error);
+      });
+ 
 
    function createTable() {
       let table =[];

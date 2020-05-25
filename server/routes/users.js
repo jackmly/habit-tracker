@@ -5,11 +5,12 @@ const passport = require('../passport')
 
 
 router.get("/", function(req, res) {
+  console.log('===== user!!======')
+  console.log(req.sessionID);
+  console.log(req.user)
     if (req.user){
-      console.log("request from app :", req.user);
       res.json({user: req.user});
     } else {
-      console.log("request from app :", req.user);
       res.json({user: null});
     }
   });

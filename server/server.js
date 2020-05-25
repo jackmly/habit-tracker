@@ -35,6 +35,7 @@ connection.once("open", () => {
 });
 
 app.use(session({
+  cookie: { maxAge: 1000 * 3600 * 24 * 30 * 2 },
   secret: process.env.SECRET,
   store: new MongoStore({ mongooseConnection: connection }),
   resave: false,
