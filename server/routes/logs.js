@@ -2,21 +2,19 @@ const router = require("express").Router();
 let Log = require("../models/log.model");
 
 router.route("/").get((req, res) => {
-    Log.find()
-        .then(log => res.json(log))
+    Log.find({userId: req.user._id})
+        .then(data => res.json(data))
         .catch(err =>res.status(400).json("Error: " + err));
 });
 
 router.route("/add").post((req, res) => {
-    const email = req.body.email;
-    const habit = req.body.habit;
-    const log = req.body.log;
 
     const newLog = new Log({
-        email,
-        habit,
-        log,
+        userId: req.user._id,
+        log: req.body.log
     });
+
+    console.log("Log added: ", newLog);
 
     newLog.save()
         .then (() => res.json("Data logged!"))
@@ -24,13 +22,15 @@ router.route("/add").post((req, res) => {
 })
 
 router.route("/delete").delete((req, res) => {
-    const email = req.body.email;
-    const habit = req.body.habit;
-    const log = req.body.log;
 
-    console.log(log);
+    const deletedLog = {
+        log: req.body.log,
+        userId: req.user._id
+    }
 
-    Log.deleteOne({log: log})
+    console.log("Log deleted: ", deletedLog);
+    
+    Log.deleteOne(deletedLog)
         .then(() => res.json("Data deleted!"))
         .catch(err => res.status(400).json("Error: " + err));
     });

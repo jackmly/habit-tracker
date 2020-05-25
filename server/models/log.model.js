@@ -1,8 +1,7 @@
 const mongoose = require("mongoose");
 
 const logSchema = new mongoose.Schema({
-    email: String,
-    habit: String,
+    userId: String,
     log: String,
 });
 

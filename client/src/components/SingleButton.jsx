@@ -1,35 +1,33 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import axios from "axios";
 
 function SingleButton(props) {
 
-  var isLogged = props.logged;
+  const [isLogged, setIsLogged] = useState(props.logged);
 
-  // const [isLogged, setIsLogged] = useState(false);
-  const datestr = props.year + "/" + props.month + "/" + props.date;
-
-  const [data, setLog] = useState({log: datestr});
-
+  useEffect (() => {
+    setIsLogged(props.logged);
+ }, [props.logged]);
+  
   function handleClick(event) {
     event.preventDefault();
-    // setIsLogged(!isLogged);
-    isLogged  = !props.logged;
 
-    if (isLogged) {
-      axios.post("/api/logs/add", data, {headers:{'Content-Type': 'application/json'}})
+    setIsLogged(!isLogged);
+
+    const datestr = {log: props.name};
+
+    if (!isLogged) {            //because useEffect is used, isLogged is updated to props's post-click state before this line is executed
+      axios.post("/api/logs/add", datestr, {headers:{'Content-Type': 'application/json'}})
         .then(function(response) {
           console.log(response);
         });
         
-    } else {
-      axios.delete("/api/logs/delete", {data}, {headers:{'Content-Type': 'application/json'}})
+    } else if (isLogged) {
+      axios.delete("/api/logs/delete",{data: datestr}, {headers:{'Content-Type': 'application/json'}}) // "data" is required
         .then(function(response) {
           console.log(response);
         });
     }
-
-    // setLog({log: ""});
-
   }
 
   return (

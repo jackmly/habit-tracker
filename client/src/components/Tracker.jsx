@@ -8,18 +8,27 @@ function Tracker() {
    const year = date.getFullYear();
    const leapYear = (year % 100 === 0) ? (year % 400 === 0) : (year % 4 === 0);
 
+   useEffect (() => {
+      getLogs();
+   }, []);
 
    const [logData, setLogData] = useState([]);
 
+   function getLogs() {
       axios.get("/api/logs")
       .then(response => {
         setLogData(response.data.map(log => log.log));
+        console.log("user's logs: ", response);
       })
       .catch(error => {
         console.log(error);
       });
- 
+   }
 
+   function dateStr(month, date) {
+      return year + "/" + month + "/" + date;
+   }
+ 
    function createTable() {
       let table =[];
       const shortMonth = [2, 4, 6, 9, 11]
@@ -44,9 +53,8 @@ function Tracker() {
                      <td>
                         <SingleButton 
                            date={i}
-                           month={j}
-                           year={year}
-                           logged = {logData.includes(year + "/" + j + "/" + i)}
+                           name={dateStr(j,i)}
+                           logged = {logData.includes(dateStr(j,i))}
                         />
                      </td>
                   )}
@@ -57,9 +65,8 @@ function Tracker() {
                   <td>
                      <SingleButton 
                         date={i}
-                        month={j}
-                        year={year}
-                        logged = {logData.includes(year + "/" + j + "/" + i)}
+                        name={dateStr(j,i)}
+                        logged = {logData.includes(dateStr(j, i))}
                      />
                   </td>
                )}
