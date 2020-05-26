@@ -28,7 +28,7 @@ function App() {
       withCredentials: true,
       headers: {
         "Content-Type": "application/json",
-        "Access-Control-Allow-Origin": "http://localhost:3001",
+        "Access-Control-Allow-Origin": "/",
       },
     }).then((response) => {
       console.log("Get user response: ", response.data);

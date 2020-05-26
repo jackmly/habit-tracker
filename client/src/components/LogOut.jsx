@@ -10,7 +10,7 @@ function LogOut(props) {
       .get("api/logout")
       .then(function (response) {
         console.log("logout response: ", response);
-        props.updateUser({loggedIn: false, username: null});
+        props.updateUser({ loggedIn: false, username: null });
         setRedirectTo("/");
       })
       .catch(function (err) {
@@ -21,10 +21,11 @@ function LogOut(props) {
   if (redirectTo) {
     return <Redirect to={{ pathname: redirectTo }} />;
   } else {
-    return(
-    <button className="btn btn-light" onClick={onLogOut}>
-      <p>Log out</p>
-    </button>)
+    return (
+      <button className="btn btn-light" onClick={onLogOut}>
+        <p>Log out</p>
+      </button>
+    );
   }
 }
 export default LogOut;
