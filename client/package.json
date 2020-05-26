@@ -15,7 +15,6 @@
   "devDependencies": {
     "typescript": "3.3.3"
   },
-
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
@@ -23,7 +22,6 @@
     "eject": "react-scripts eject"
   },
   "proxy": "http://localhost:3001",
-
   "browserslist": [
     ">0.2%",
     "not dead",

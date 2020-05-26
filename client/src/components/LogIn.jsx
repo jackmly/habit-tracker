@@ -25,7 +25,7 @@ function LogIn(props) {
     axios
       .post("api/login", 
         user, 
-        {headers:{'Content-Type': 'application/json', "Access-Control-Allow-Origin": "http://localhost:3000"}},
+        {headers:{'Content-Type': 'application/json', "Access-Control-Allow-Origin": "/"}},
         // {withCredentials: true}
       )
       .then(function(response) {
@@ -77,7 +77,7 @@ function LogIn(props) {
           <div className="card">
             <div className="card-body">
               <a className="btn btn-block" href="/auth/google" role="button">
-                <i className="fab fa-google" />
+                <i className="auth fa fa-google" />
                 Sign In with Google
               </a>
             </div>

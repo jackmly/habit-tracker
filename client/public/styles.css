@@ -1,9 +1,18 @@
+:root {
+  --color-twitter: #1B95E0;
+  --color-grey: #999;
+  --color-dark: #000;
+  --color-white: #fff;
+  --color-light: #eee;
+}
+
+
 body {
-  background-color: #E8ECEF;
+  background-color: #fafafa;
   min-height: 70vh;
   padding: 1rem;
   box-sizing: border-box;
-  text-align:left;
+  text-align: left;
   color: #808285;
   font-family: "Montserrat", sans-serif;
 }
@@ -12,8 +21,8 @@ body {
   align-items: left;
   float: left;
   justify-content: left;
-  position:absolute;
-  text-align:left;
+  position: absolute;
+  text-align: left;
 }
 
 .tracker {
@@ -33,20 +42,22 @@ body {
   font-size: 50%;
   cursor: pointer;
   text-decoration: none;
-  color:#808285;
+  color: #808285;
   justify-content: center;
 }
+
 .heading {
   display: flex;
   align-items: center;
   justify-content: center;
   margin-bottom: 1rem;
 }
+
 .heading h1 {
   transform: rotate(2deg);
   padding: 0.2rem 1.2rem;
   border-radius: 20% 5% 20% 5%/5% 20% 25% 20%;
-  background-color: #fdcb6e;
+  background-color: #808285;
   font-size: 1.5rem;
 }
 
@@ -73,9 +84,9 @@ td {
   background: white;
   width: 14px;
   height: 14px;
-  text-align:center;
+  text-align: center;
   border-radius: 50%;
-  margin:auto auto;
+  margin: auto auto;
   vertical-align: middle;
   position: relative;
   border: none;
@@ -86,9 +97,9 @@ td {
   background: transparent;
   width: 14px;
   height: 14px;
-  text-align:center;
+  text-align: center;
   border-radius: 50%;
-  margin:auto auto;
+  margin: auto auto;
   vertical-align: middle;
   position: relative;
   border: none;
@@ -107,9 +118,132 @@ input[type="button"] {
   outline: none;
   cursor: pointer;
   text-decoration: none;
-  color:#808285;
+  color: #808285;
 }
 
 .container-home {
   text-align: center;
+  padding: 0 16px;
+}
+
+
+i {
+  color: #52616b;
+  font-size: 25px;
+  line-height: 55px;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+ul {
+  list-style: none;
+}
+
+a, button {
+  text-decoration: none;
+  border: none;
+}
+
+button:focus {
+  outline:none;
+}
+
+/***************/
+.twitter-wrap {
+  display: grid;
+  grid-template-columns: 20% 50% 30%;
+  position: relative;
+}
+
+.side-left {
+  border-right: 1px solid var(--color-light);
+  position: fixed;
+  height: 100%;
+  width: 10%;
+  text-align: right;
+  z-index: 1;
+}
+
+.menu {
+  text-align: center;
+}
+
+.menu-item {
+  padding: 0px 20px;
+  margin-bottom: 0px;
+}
+
+.menu-link {
+  width: 55px;
+  line-height: 55px;
+  height: 55px;
+  display: block;
+  text-align: center;
+  border-radius: 50%;
+  margin-left: auto;
+  background-color: lighten(var(--color-twitter));
+}
+
+.menu-link:hover {
+  background-color: #f0f5f9;
+}
+
+.menu-link:hover i {
+  color: #738598
+}
+
+i.logo {
+  color:#52616b;
+}
+
+.name {
+  font-size: 16px;
+  font-weight: 600;
+  margin-top: 5px;
+}
+
+;
+
+/*********************/
+div .side-main {
+  border-right: 1px solid var(--color-light);
+  position: absolute;
+  width: 50%;
+  height: 100%;
+  margin-left: 20%;
+  background-color: var(--color-light);
+  z-index: - 1;
+}
+
+.link-home {
+  font-weight: 500;
+  color: var(--color-dark);
+  font-size: 20px;
+}
+
+/**************************/
+div .side-right {
+  width: 20%;
+  height: 100%;
+  /* border-left:1px solid var(--color-light); */
+  padding: 10px 5px;
+  right: 0;
+  position: absolute;
+
+}
+
+div .sign-up-button {
+  margin-left: 10px;
+  display: inline-block
+}
+
+
+/************SIGN IN PAGE/ SIGN UP PAGE**************/
+
+i.auth {
+  margin-right: 5px;
 }

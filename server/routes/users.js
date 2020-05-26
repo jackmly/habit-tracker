@@ -34,7 +34,6 @@ router.get("/logout", function(req, res){
         return res.send({success: true});
         }
         });
-    // res.send({msg: "logging out"})
   } else {
     res.send({msg: "No user to log out"})
   }

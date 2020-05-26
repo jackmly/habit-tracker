@@ -1,15 +1,16 @@
 import React from "react";
 import Tracker from "./Tracker";
-import LogTime from "./LogTime";
+import Sidebar from "./Sidebar";
 
-function Home(){
-
-    return (
-        <div className="container-home">
-            <LogTime />
-            <Tracker />
-        </div>
-    )
+function Home(props) {
+  return (
+    <div>
+      <Sidebar userStatus={props.userStatus} updateUser={props.updateUser} />
+      <div className="container-home">
+        <Tracker />
+      </div>
+    </div>
+  );
 }
 
-export default Home
+export default Home;
