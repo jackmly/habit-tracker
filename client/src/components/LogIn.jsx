@@ -76,7 +76,7 @@ function LogIn(props) {
         <div className="col-sm-4">
           <div className="card">
             <div className="card-body">
-              <a className="btn btn-block" href="/auth/google" role="button">
+              <a className="btn btn-block" href="http://localhost:5000/api/auth/google/" role="button">
                 <i className="auth fa fa-google" />
                 Sign In with Google
               </a>

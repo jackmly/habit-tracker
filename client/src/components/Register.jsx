@@ -64,7 +64,7 @@ function Register(props) {
     <div className="col-sm-4">
       <div className="card social-block">
         <div className="card-body">
-          <a className="btn btn-block" href="/auth/google" role="button">
+          <a className="btn btn-block" href="http://localhost:5000/api/auth/google/" role="button">
             <i className="auth fa fa-google"></i>
             Sign Up with Google
           </a>

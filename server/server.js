@@ -8,6 +8,7 @@ const LocalStrategy = require('passport-local').Strategy
 const MongoStore = require('connect-mongo')(session)
 const passport = require('./passport');
 
+
 const app = express();
 const port = process.env.PORT || 5000;
 

@@ -1,5 +1,6 @@
 const passport = require('passport')
 const LocalStrategy = require('./localStrategy')
+const GoogleStrategy = require("./googleStrategy")
 const User = require('../models/user.model')
 const passportLocalMongoose = require('passport-local-mongoose');
 
@@ -27,6 +28,7 @@ passport.deserializeUser((id, done) => {
 })
 
 //  Use Strategies 
-passport.use(LocalStrategy)
+passport.use(LocalStrategy);
+passport.use(GoogleStrategy);
 
 module.exports = passport

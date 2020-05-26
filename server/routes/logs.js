@@ -2,9 +2,13 @@ const router = require("express").Router();
 let Log = require("../models/log.model");
 
 router.route("/").get((req, res) => {
+    if (req.user) {
     Log.find({userId: req.user._id})
         .then(data => res.json(data))
         .catch(err =>res.status(400).json("Error: " + err));
+    } else {
+        res.json("user not logged in");
+    }
 });
 
 router.route("/add").post((req, res) => {
