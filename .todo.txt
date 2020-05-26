@@ -1,8 +1,0 @@
-- add sign out
-- add new tracker layout
-- add Google / Facebook login/sign up
-- add navbar - use Twitter simple style
-- add log today/yesterday
-- make app mobile friendly
-- sharing?
-- add year
