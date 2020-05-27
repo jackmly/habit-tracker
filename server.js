@@ -53,7 +53,7 @@ app.use("/api/logs", logsRouter);
 app.use("/api/", usersRouter);
 
 if (process.env.NODE_END === "production") {
-  app.use(express.static("client/build"));
+  app.use(express.static(__dirname + "/client/build"));
 }
 
 
