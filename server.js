@@ -10,7 +10,11 @@ const passport = require('./passport');
 
 
 const app = express();
-const port = process.env.PORT || 5000;
+let port = process.env.PORT;
+
+if (port == null || port == "") {
+  port = 5000;
+}
 
 if (process.env.NODE_END === "production") {
   app.use(express.static("client/build"));
@@ -47,6 +51,10 @@ const logsRouter = require("./routes/logs");
 
 app.use("/api/logs", logsRouter);
 app.use("/api/", usersRouter);
+
+if (process.env.NODE_END === "production") {
+  app.use(express.static("client/build"));
+}
 
 
 app.listen(port, () => {
