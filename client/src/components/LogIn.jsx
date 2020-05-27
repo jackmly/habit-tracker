@@ -23,7 +23,7 @@ function LogIn(props) {
     event.preventDefault()
 
     axios
-      .post("api/login", 
+      .post("/api/login", 
         user, 
         {headers:{'Content-Type': 'application/json', "Access-Control-Allow-Origin": "/"}},
         // {withCredentials: true}
