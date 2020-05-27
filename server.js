@@ -54,7 +54,9 @@ app.use("/api/", usersRouter);
 // if (process.env.NODE_END === "production") {
 //   app.use(express.static(__dirname + "/client/build"));
 // }
-
+app.get("*", (req, res) => {
+  res.sendFile(path.join(__dirname, "client", "build", "index.html"));
+});
 
 app.listen(port, () => {
     console.log(`Server is running on port ${port}`);
