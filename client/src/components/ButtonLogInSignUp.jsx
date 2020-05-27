@@ -10,7 +10,7 @@ function ButtonLogInSignUp() {
         </Link>
       </div>
       <div className="sign-up-button">
-        <Link to="/Register" className="btn btn-sm btn-secondary">
+        <Link to="/register" className="btn btn-sm btn-secondary">
           Sign Up
         </Link>
       </div>
