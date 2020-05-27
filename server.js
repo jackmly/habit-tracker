@@ -7,6 +7,7 @@ const session = require("express-session");
 const LocalStrategy = require('passport-local').Strategy
 const MongoStore = require('connect-mongo')(session)
 const passport = require('./passport');
+const path = require('path');
 
 
 const app = express();
@@ -14,10 +15,6 @@ let port = process.env.PORT;
 
 if (port == null || port == "") {
   port = 5000;
-}
-
-if (process.env.NODE_END === "production") {
-  app.use(express.static("client/build"));
 }
 
 mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost:27017/habitDB", {
@@ -30,6 +27,8 @@ const connection = mongoose.connection;
 connection.once("open", () => {
   console.log("MongoDB database connection established")
 });
+
+app.use('/', express.static(path.join(__dirname, '/client/build')));
 
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json());
@@ -52,9 +51,9 @@ const logsRouter = require("./routes/logs");
 app.use("/api/logs", logsRouter);
 app.use("/api/", usersRouter);
 
-if (process.env.NODE_END === "production") {
-  app.use(express.static(__dirname + "/client/build"));
-}
+// if (process.env.NODE_END === "production") {
+//   app.use(express.static(__dirname + "/client/build"));
+// }
 
 
 app.listen(port, () => {
