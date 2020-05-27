@@ -148,7 +148,7 @@ a, button {
   border: none;
 }
 
-button:focus {
+a:focus, button:focus {
   outline:none;
 }
 
