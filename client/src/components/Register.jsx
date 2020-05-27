@@ -82,7 +82,7 @@ function Register(props) {
             <div className="card-body">
               <a
                 className="btn btn-block"
-                href="http://localhost:5000/api/auth/google/"
+                href="/api/auth/google/"
                 role="button"
               >
                 <i className="auth fa fa-google"></i>

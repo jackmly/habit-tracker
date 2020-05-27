@@ -78,10 +78,10 @@ router.get("/auth/google",
 
 router.get(
   "/auth/google/home",
-  passport.authenticate("google", { failureRedirect: "http://localhost:3000/login" }),
+  passport.authenticate("google", { failureRedirect: "https://secret-mountain-62686.herokuapp.com/login" }),
   function (req, res) {
     // Successful authentication, redirect home.
-        res.redirect("http://localhost:3000");
+        res.redirect("https://secret-mountain-62686.herokuapp.com/");
     }
 );
 
