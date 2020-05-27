@@ -1,8 +1,10 @@
 import React, { useState } from "react";
+import {Redirect} from "react-router-dom";
 import axios from "axios";
 
 function Register(props) {
   const [user, setUser] = useState({ username: "", password: "" });
+  const [redirectTo, setRedirectTo] = useState(null);
 
   function handleChange(event) {
     const { name, value } = event.target;
@@ -29,12 +31,16 @@ function Register(props) {
       )
       .then(function (response) {
         console.log("registration response: ", response);
+        setRedirectTo("/login");
       })
       .catch(function (err) {
         console.log("registration response: ", err);
       });
   }
 
+  if (redirectTo) {
+    return <Redirect to={{ pathname: redirectTo }} />
+  } else {
   return (
     <div className="container mt-5">
       <h1>Register</h1>
@@ -88,6 +94,7 @@ function Register(props) {
       </div>
     </div>
   );
+}
 }
 
 export default Register;
