@@ -81,7 +81,7 @@ router.get(
   passport.authenticate("google", { failureRedirect: "https://secret-mountain-62686.herokuapp.com/login" }),
   function (req, res) {
     // Successful authentication, redirect home.
-        res.redirect("https://secret-mountain-62686.herokuapp.com/");
+        res.redirect("http://secret-mountain-62686.herokuapp.com/login");
     }
 );
 
