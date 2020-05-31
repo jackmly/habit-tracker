@@ -1,6 +1,7 @@
 import React, {useState, useEffect} from "react";
 import axios from "axios";
-import SingleButton from "./SingleButton";
+import TrackerButton from "./TrackerButton";
+import TrackerAddDelete from "./TrackerAddDelete";
 
 function Tracker() {
 
@@ -8,11 +9,21 @@ function Tracker() {
    const year = date.getFullYear();
    const leapYear = (year % 100 === 0) ? (year % 400 === 0) : (year % 4 === 0);
 
+   const [logData, setLogData] = useState([]);
+
    useEffect (() => {
       getLogs();
    }, []);
 
-   const [logData, setLogData] = useState([]);
+   function updateLogs(str) {
+      if (logData.includes(str)) {
+         setLogData(logData.filter(item => item!==str));
+      } else {
+         setLogData([...logData, str]);
+      }
+      console.log(logData);
+      console.log(logData.includes(str));
+   }
 
    function getLogs() {
       axios.get("/api/logs")
@@ -50,8 +61,8 @@ function Tracker() {
                   tableBody.push(<td></td>)
                } else {
                   tableBody.push(
-                     <td>
-                        <SingleButton 
+                     <td className="table-item">
+                        <TrackerButton 
                            date={i}
                            name={dateStr(j,i)}
                            logged = {logData.includes(dateStr(j,i))}
@@ -62,8 +73,8 @@ function Tracker() {
                tableBody.push(<td></td>)
             } else {
                tableBody.push(
-                  <td>
-                     <SingleButton 
+                  <td className="table-item">
+                     <TrackerButton 
                         date={i}
                         name={dateStr(j,i)}
                         logged = {logData.includes(dateStr(j, i))}
@@ -76,12 +87,16 @@ function Tracker() {
       return table
    }
    return (
-      <div className = "tracker">
-      <table>
-         <tbody>
-         {createTable()}
-         </tbody>
-      </table>
+      <div className="nested">
+         <div className="tracker-add">
+            <TrackerAddDelete logData={logData} updateLogs={updateLogs}/></div>
+         <div className = "tracker">
+            <table>
+               <tbody>
+                  {createTable()}
+               </tbody>
+            </table>
+         </div>
       </div>
 
    )

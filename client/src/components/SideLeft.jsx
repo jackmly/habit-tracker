@@ -1,43 +1,35 @@
 import React from "react";
 import LogOut from "./LogOut";
-import ButtonLogInSignUp from "./ButtonLogInSignUp";
 
-function Sidebar(props) {
+function SideLeft(props) {
   return (
-    <div>
       <div className="side-left">
         <ul className="menu">
-          <li className="logo">
-            <a className="logo">Habit Tracker</a>
+          <li className="menu-logo">
+            <a href="/" className="logo-link">Flowhabit</a>
           </li>
 
           <li className="menu-item">
             <button className="menu-link">
-              <i className="sidebar fa fa-home"></i>
-            </button>
-          </li>
-
-          <li className="menu-item">
-            <button className="menu-link dropdown" data-toggle="dropdown">
-              <i className="sidebar fa fa-plus"></i>
+              <a href="/" className="fa fa-home"></a>
             </button>
           </li>
 
           <li className="menu-item">
             <button className="menu-link active">
-              <i className="sidebar fa fa-cog"></i>
+              <i className="fa fa-cog"></i>
             </button>
           </li>
           {props.userStatus.loggedIn ? (
         <div>
           <li className="menu-item">
             <button className="menu-link">
-              <i className="sidebar fa fa-bell"></i>
+              <i className="fa fa-bell"></i>
             </button>
           </li>
           <li className="menu-item">
             <button className="menu-link">
-              <i className="sidebar fa fa-sticky-note"></i>
+              <i className="fa fa-sticky-note"></i>
             </button>
           </li>
           <li className="menu-item">
@@ -53,35 +45,16 @@ function Sidebar(props) {
                 <i className="sidebar fa fa-user" />
               </button>
               <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                <a class="dropdown-item" href="#">
-                  Account
-                </a>
-                <a class="dropdown-item" href="#">
-                  Profile
-                </a>
-                  <LogOut updateUser={props.updateUser} />
+                <a class="dropdown-item" href="#"><p>Account</p></a>
+                <a class="dropdown-item" href="#"><p>Profile</p></a>
+                <p><LogOut updateUser={props.updateUser} /></p>
               </div>
             </div>
-          </li>
-
-          <li>
-            
-            
           </li>
           </div>) : null}
         </ul>
       </div>
-      <div className="side-main"></div>
-
-      <div className="side-right">
-        {props.userStatus.loggedIn ? (
-          "logged in as " + props.userStatus.username
-        ) : (
-          <ButtonLogInSignUp />
-        )}
-      </div>
-    </div>
   );
 }
 
-export default Sidebar;
+export default SideLeft;

@@ -22,8 +22,8 @@ function LogOut(props) {
     return <Redirect to={{ pathname: redirectTo }} />;
   } else {
     return (
-      <button className="logout" onClick={onLogOut} className="dropdown-item">
-        <p>Log out</p>
+      <button onClick={onLogOut} className="logout dropdown-item">
+        Log out
       </button>
     );
   }

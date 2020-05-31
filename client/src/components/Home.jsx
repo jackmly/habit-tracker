@@ -1,14 +1,16 @@
 import React from "react";
-import Tracker from "./Tracker";
-import Sidebar from "./Sidebar";
+import SideLeft from "./SideLeft";
+import SideRight from "./SideRight";
+import SideMain from "./SideMain";
+
+
 
 function Home(props) {
   return (
-    <div>
-      <Sidebar userStatus={props.userStatus} updateUser={props.updateUser} />
-      <div className="container-home">
-        <Tracker />
-      </div>
+    <div className="wrapper">
+      <SideLeft userStatus={props.userStatus} updateUser={props.updateUser} />
+      <SideMain />
+      <SideRight userStatus={props.userStatus} updateUser={props.updateUser} />
     </div>
   );
 }

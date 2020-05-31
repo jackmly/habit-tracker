@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 
-function SingleButton(props) {
+function TrackerButton(props) {
 
   const [isLogged, setIsLogged] = useState(props.logged);
 
@@ -16,7 +16,8 @@ function SingleButton(props) {
 
     const datestr = {log: props.name};
 
-    if (!isLogged) {            //because useEffect is used, isLogged is updated to props's post-click state before this line is executed
+    //because useEffect is used, isLogged is updated to props's post-click state before this line is executed
+    if (!isLogged) {            
       axios.post("/api/logs/add", datestr, {headers:{'Content-Type': 'application/json'}})
         .then(function(response) {
           console.log(response);
@@ -40,4 +41,4 @@ function SingleButton(props) {
   );
 }
 
-export default SingleButton;
+export default TrackerButton;
